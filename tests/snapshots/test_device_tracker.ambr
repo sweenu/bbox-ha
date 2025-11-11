@@ -1,0 +1,122 @@
+# serializer version: 1
+# name: test_all_entities[device_tracker.offline_device-entry]
+  EntityRegistryEntrySnapshot({
+    'aliases': set({
+    }),
+    'area_id': None,
+    'capabilities': None,
+    'config_entry_id': <ANY>,
+    'config_subentry_id': <ANY>,
+    'device_class': None,
+    'device_id': <ANY>,
+    'disabled_by': None,
+    'domain': 'device_tracker',
+    'entity_category': <EntityCategory.DIAGNOSTIC: 'diagnostic'>,
+    'entity_id': 'device_tracker.offline_device',
+    'has_entity_name': True,
+    'hidden_by': None,
+    'icon': None,
+    'id': <ANY>,
+    'labels': set({
+    }),
+    'name': None,
+    'options': dict({
+    }),
+    'original_device_class': None,
+    'original_icon': None,
+    'original_name': 'offline-device',
+    'platform': 'bbox',
+    'previous_unique_id': None,
+    'suggested_object_id': None,
+    'supported_features': 0,
+    'translation_key': None,
+    'unique_id': '11:22:33:44:55:66',
+    'unit_of_measurement': None,
+  })
+# ---
+# name: test_all_entities[device_tracker.offline_device-state]
+  StateSnapshot({
+    'attributes': ReadOnlyDict({
+      'connection_type': 'DHCP',
+      'device_type': 'Phone',
+      'first_seen': datetime.datetime(2025, 11, 11, 19, 3, 55, 273497),
+      'friendly_name': 'offline-device',
+      'guest': False,
+      'host_name': 'offline-device',
+      'ip': '192.168.1.101',
+      'last_seen': datetime.datetime(2025, 11, 11, 18, 3, 55, 339053),
+      'link_type': 'Ethernet',
+      'mac': '11:22:33:44:55:66',
+      'source_type': <SourceType.ROUTER: 'router'>,
+    }),
+    'context': <ANY>,
+    'entity_id': 'device_tracker.offline_device',
+    'last_changed': <ANY>,
+    'last_reported': <ANY>,
+    'last_updated': <ANY>,
+    'state': 'not_home',
+  })
+# ---
+# name: test_all_entities[device_tracker.test_device-entry]
+  EntityRegistryEntrySnapshot({
+    'aliases': set({
+    }),
+    'area_id': None,
+    'capabilities': None,
+    'config_entry_id': <ANY>,
+    'config_subentry_id': <ANY>,
+    'device_class': None,
+    'device_id': <ANY>,
+    'disabled_by': None,
+    'domain': 'device_tracker',
+    'entity_category': <EntityCategory.DIAGNOSTIC: 'diagnostic'>,
+    'entity_id': 'device_tracker.test_device',
+    'has_entity_name': True,
+    'hidden_by': None,
+    'icon': None,
+    'id': <ANY>,
+    'labels': set({
+    }),
+    'name': None,
+    'options': dict({
+    }),
+    'original_device_class': None,
+    'original_icon': None,
+    'original_name': 'test-device',
+    'platform': 'bbox',
+    'previous_unique_id': None,
+    'suggested_object_id': None,
+    'supported_features': 0,
+    'translation_key': None,
+    'unique_id': 'AA:BB:CC:DD:EE:FF',
+    'unit_of_measurement': None,
+  })
+# ---
+# name: test_all_entities[device_tracker.test_device-state]
+  StateSnapshot({
+    'attributes': ReadOnlyDict({
+      'connection_speed': '1000 Mbps',
+      'connection_type': 'DHCP',
+      'device_type': 'Computer',
+      'first_seen': datetime.datetime(2025, 11, 11, 19, 3, 55, 273322),
+      'friendly_name': 'test-device',
+      'guest': False,
+      'host_name': 'test-device',
+      'ip': '192.168.1.100',
+      'last_seen': datetime.datetime(2025, 11, 11, 19, 3, 55, 338566),
+      'lease_time': '1:00:00',
+      'link_type': 'Wifi 5',
+      'mac': 'AA:BB:CC:DD:EE:FF',
+      'rssi': '-45 dBm',
+      'signal_strength': '110 %',
+      'source_type': <SourceType.ROUTER: 'router'>,
+      'wireless_band': '5.0 GHz',
+    }),
+    'context': <ANY>,
+    'entity_id': 'device_tracker.test_device',
+    'last_changed': <ANY>,
+    'last_reported': <ANY>,
+    'last_updated': <ANY>,
+    'state': 'home',
+  })
+# ---

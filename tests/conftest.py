@@ -18,6 +18,8 @@ from aiobbox.models import (
 )
 from homeassistant.const import CONF_PASSWORD
 from pytest_homeassistant_custom_component.common import MockConfigEntry
+from pytest_homeassistant_custom_component.syrupy import HomeAssistantSnapshotExtension
+from syrupy.assertion import SnapshotAssertion
 
 from custom_components.bbox.const import CONF_BASE_URL, DOMAIN
 
@@ -27,6 +29,29 @@ pytest_plugins = "pytest_homeassistant_custom_component"
 @pytest.fixture(autouse=True)
 def auto_enable_custom_integrations(enable_custom_integrations):  # noqa: ARG001
     yield
+
+
+@pytest.fixture
+def snapshot(snapshot: SnapshotAssertion) -> SnapshotAssertion:
+    """Return snapshot assertion fixture with the Home Assistant extension."""
+    return snapshot.use_extension(HomeAssistantSnapshotExtension)
+
+
+# Taken from homeassistant/core. Not needed if ever upstreamed.
+@pytest.fixture
+def entity_registry_enabled_by_default() -> Generator[None]:
+    """Test fixture that ensures all entities are enabled in the registry."""
+    with (
+        patch(
+            "homeassistant.helpers.entity.Entity.entity_registry_enabled_default",
+            return_value=True,
+        ),
+        patch(
+            "homeassistant.components.device_tracker.config_entry.ScannerEntity.entity_registry_enabled_default",
+            return_value=True,
+        ),
+    ):
+        yield
 
 
 @pytest.fixture
