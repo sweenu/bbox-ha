@@ -45,4 +45,4 @@ async def async_unload_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool:
         coordinator: BboxDataUpdateCoordinator = hass.data[DOMAIN].pop(entry.entry_id)
         await coordinator.async_shutdown()
 
-    return unload_ok
+    return unload_ok  # type: ignore

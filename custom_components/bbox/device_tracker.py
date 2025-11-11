@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import logging
+from datetime import datetime, timedelta
 from typing import TYPE_CHECKING, Any
 
 from aiobbox.models import Host
@@ -77,12 +78,16 @@ class BboxDeviceTracker(BboxEntity, ScannerEntity):
             "via_device": (DOMAIN, coordinator.data.router.serialnumber),
         }
 
-        # Add manufacturer/model if available
+        # Add device information if available
         if host.informations:
+            if host.informations.type:
+                device_info["device_category"] = host.informations.type
             if host.informations.manufacturer:
                 device_info["manufacturer"] = host.informations.manufacturer
             if host.informations.model:
                 device_info["model"] = host.informations.model
+            if host.informations.operatingSystem:
+                device_info["operating_system"] = host.informations.operatingSystem
 
         self._attr_device_info = device_info
 
@@ -134,29 +139,28 @@ class BboxDeviceTracker(BboxEntity, ScannerEntity):
             ATTR_LINK_TYPE: host.link,
         }
 
-        # Add optional attributes
         if host.devicetype:
             attributes[ATTR_DEVICE_TYPE] = host.devicetype
 
         if host.firstseen:
-            attributes[ATTR_FIRST_SEEN] = host.firstseen.isoformat()
+            attributes[ATTR_FIRST_SEEN] = host.firstseen
 
-        # Last seen is in seconds since last seen
         if host.lastseen is not None:
-            attributes[ATTR_LAST_SEEN] = host.lastseen
+            attributes[ATTR_LAST_SEEN] = datetime.now() - timedelta(
+                seconds=host.lastseen
+            )
 
         if host.guest is not None:
             attributes[ATTR_GUEST] = host.guest
 
         if host.lease:
-            attributes[ATTR_LEASE_TIME] = host.lease
+            attributes[ATTR_LEASE_TIME] = str(timedelta(seconds=host.lease))
 
-        # Wireless information
         if host.wireless:
             if host.wireless.band:
                 attributes[ATTR_WIRELESS_BAND] = f"{host.wireless.band} GHz"
             if host.wireless.rssi0:
-                attributes[ATTR_RSSI] = host.wireless.rssi0
+                attributes[ATTR_RSSI] = f"{host.wireless.rssi0} dBm"
                 # Calculate signal strength percentage (RSSI typically -100 to -30)
                 rssi = host.wireless.rssi0
                 if rssi <= -100:
@@ -165,15 +169,15 @@ class BboxDeviceTracker(BboxEntity, ScannerEntity):
                     strength = 100
                 else:
                     strength = int(2 * (rssi + 100))
-                attributes[ATTR_SIGNAL_STRENGTH] = strength
-            if host.wireless.rate:
-                attributes[ATTR_CONNECTION_SPEED] = f"{host.wireless.rate} Mbps"
+                attributes[ATTR_SIGNAL_STRENGTH] = f"{strength} %"
+            if host.wireless.estimatedRate:
+                attributes[ATTR_CONNECTION_SPEED] = (
+                    f"{host.wireless.estimatedRate} Mbps"
+                )
 
-        # Ethernet information
         if host.ethernet and host.ethernet.speed:
             attributes[ATTR_CONNECTION_SPEED] = f"{host.ethernet.speed} Mbps"
 
-        # IPv6 addresses
         if host.ip6address:
             ipv6_addrs = [addr.ipaddress for addr in host.ip6address]
             attributes[ATTR_IPV6_ADDRESSES] = ipv6_addrs

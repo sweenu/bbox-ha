@@ -58,7 +58,7 @@ async def validate_input(hass: HomeAssistant, data: dict[str, Any]) -> dict[str,
     }
 
 
-class BboxConfigFlow(ConfigFlow, domain=DOMAIN):
+class BboxConfigFlow(ConfigFlow, domain=DOMAIN):  # type: ignore
     """Handle a config flow for Bbox."""
 
     VERSION = 1
