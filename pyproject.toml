@@ -20,7 +20,7 @@ classifiers = [
     "Topic :: Software Development :: Libraries :: Python Modules",
 ]
 dependencies = [
-    "aiobbox==0.3.0",
+    "aiobbox==0.3.1",
     "homeassistant>=2025.11.1",
 ]
 

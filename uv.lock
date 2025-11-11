@@ -24,15 +24,15 @@ wheels = [
 
 [[package]]
 name = "aiobbox"
-version = "0.3.0"
+version = "0.3.1"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "aiohttp" },
     { name = "pydantic" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/11/92/ba764bb43c83c8d44df019cd9299d67a3b78c41915648ab4819911562efe/aiobbox-0.3.0.tar.gz", hash = "sha256:1ef4e0d3a40765684f0f57b553fffdcb2131711c3fa4f882148a6b40cad91338", size = 7549, upload-time = "2025-11-09T15:38:05.992Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/aa/f2/a30f9648bab04ef0d27aeaef65b3163ca2618cc8f3e27fff56912e8cff62/aiobbox-0.3.1.tar.gz", hash = "sha256:fd4cb286abc871f330ae2b1b505e40122c3321401f431be68f140bf69a6c8fd8", size = 7542, upload-time = "2025-11-11T11:38:49.366Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/ac/6a/c487ac28c7b6cfa4d5a6d05d025fe601a4e02838134e8d3bdeb571144731/aiobbox-0.3.0-py3-none-any.whl", hash = "sha256:c95b0ad81bf482570fcbce96611efbbf1d3e8a69c7485c75871f2876b1caa34e", size = 8352, upload-time = "2025-11-09T15:38:05.115Z" },
+    { url = "https://files.pythonhosted.org/packages/b2/8b/3fbeec72aa4043aaf117ef42f023ccf8df7c60f85a61b79d310ddbcc7dc0/aiobbox-0.3.1-py3-none-any.whl", hash = "sha256:1768fdb487cb1f0c5a67d3347149aeab5aeba674e36cf20b11181ee601eb8b5d", size = 8341, upload-time = "2025-11-11T11:38:48.261Z" },
 ]
 
 [[package]]
@@ -397,7 +397,7 @@ dev = [
 
 [package.metadata]
 requires-dist = [
-    { name = "aiobbox", specifier = "==0.3.0" },
+    { name = "aiobbox", specifier = "==0.3.1" },
     { name = "homeassistant", specifier = ">=2025.11.1" },
 ]
 
